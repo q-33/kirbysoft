@@ -1,5 +1,5 @@
 //////////////////////
-//  KIRBYSOFT v0.6  //
+//  KIRBYSOFT v0.7  //
 //////////////////////
 
 /*
@@ -69,7 +69,7 @@ void setup()
 void loop() {
  
  Serial.println("*************************************");
- Serial.println("*     WELCOME TO KIRBYSOFT v0.6     *");
+ Serial.println("*     WELCOME TO KIRBYSOFT v0.7     *");
  Serial.println("*************************************");
  
  delay(2000);
@@ -162,63 +162,63 @@ void loop() {
  
  if (temperature1F >= thresh1) {
    digitalWrite(RELAY1, HIGH);
-    Serial.println("PUMP TO FAU ON NORMAL");
+    Serial.println("**PUMP1 TO FAU ON NORMAL**");
  }
  else {
    digitalWrite(RELAY1, LOW);
-     Serial.println("pump to fau off normal");
+     Serial.println("Pump1 to FAU off normal");
  }
  
- delay(1000);
+ delay(500);
  
  //PUMP1 - HIGH TO FAU
   if (temperature2F >= thresh2) {
    digitalWrite(RELAY2, HIGH);
-     Serial.println("PUMP TO FAU ON HIGH");
+     Serial.println("**PUMP1 TO FAU ON HIGH**");
  }
  else {
    digitalWrite(RELAY2, LOW);
-     Serial.println("pump to fau off high");
+     Serial.println("Pump1 to FAU off high");
  }
  
-  delay(1000);
+  delay(500);
  
  //PUMP2 - NORMAL TO H2O EXCHANGE
  
   if (temperature3F >= thresh3) {
    digitalWrite(RELAY3, HIGH);
-     Serial.println("PUMP TO H2O EXCHANGE ON");
+     Serial.println("**PUMP2 TO H2O EXCHANGE ON**");
  }
  else {
    digitalWrite(RELAY3, LOW);
-     Serial.println("pump to h2o exchange off");
+     Serial.println("Pump2 to H2O exchange off");
  }
 
-  delay(1000);
+  delay(500);
  
  //PUMP3 - NORMAL TO SLAB
   if (temperature4F >= thresh4) {
    digitalWrite(RELAY4, HIGH);
-     Serial.println("PUMP TO SLAB ON NORMAL");
+     Serial.println("**PUMP3 TO SLAB ON NORMAL**");
  }
  else {
    digitalWrite(RELAY4, LOW);
-     Serial.println("pump to slab off normal");
+     Serial.println("Pump3 to slab off normal");
  }
  
-  delay(1000);
+  delay(500);
  
  //PUMP3 - HIGH TO SLAB
   if (temperature5F >= thresh5) {
    digitalWrite(RELAY5, HIGH);
-     Serial.println("PUMP TO SLAB ON HIGH");
+     Serial.println("**PUMP3 TO SLAB ON HIGH**");
  }
  else {
    digitalWrite(RELAY5, LOW);
-     Serial.println("pump to slab off high");
+     Serial.println("Pump3 to slab off high");
  }
  
-  delay(1000);
+  delay(500);
   
   Serial.println("Done.");
   delay(3000);
@@ -229,15 +229,13 @@ void loop() {
  Serial.println("Restarting in...");
  delay(500);
  Serial.println("5");
- delay(1000);
+ delay(500);
  Serial.println("4");
- delay(1000);
+ delay(500);
  Serial.println("3");
- delay(1000);
+ delay(500);
  Serial.println("2");
- delay(1000);
+ delay(500);
  Serial.println("1");
- delay(1000);
- Serial.println("restart");
  delay(500);
 }
