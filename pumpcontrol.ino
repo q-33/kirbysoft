@@ -1,3 +1,13 @@
+//Additional delay between runs
+#define delayvar 10000 //Delay in ms
+
+//Temperature thresholds for pumps
+#define thresh1 76 //Threshold for normal to FAU
+#define thresh2 75 //Threshold for high to FAU
+#define thresh3 74 //Threshold for normal to H2O
+#define thresh4 73 //Threshold for normal to slab
+#define thresh5 72 //Threshold for high to slab
+
 //Define the reference voltage (use multimeter on 3.3v)
 #define aref_voltage 3.3 //Not yet calibrated
  
@@ -10,13 +20,6 @@
 //#define RELAY6 7 //EMPTY
 //#define RELAY7 8 //EMPTY
 //#define RELAY8 9 //EMPTY
-
-//Temperature thresholds for pumps
-#define thresh1 80 //Threshold for normal to FAU
-#define thresh2 80 //Threshold for high to FAU
-#define thresh3 80 //Threshold for normal to H2O
-#define thresh4 80 //Threshold for normal to slab
-#define thresh5 80 //Threshold for high to slab
  
 //TMP36 pins
 int tempPin1 = 0; //Panel supply
@@ -55,6 +58,8 @@ void setup()
 }
  
 void loop() {
+  
+  delay(2000);
  
 //TEMPERATURE SENSOR READINGS
  //Panel Supply 
@@ -173,7 +178,5 @@ void loop() {
    digitalWrite(RELAY5, LOW);
      Serial.println("OFF HIGH pump3 to slab");
  }
-    
-//Kill time between runs
- delay(5000);
+   delay(delayvar);
 }
