@@ -86,7 +86,7 @@ void loop() {
  float temperature1C = (voltage1 - 0.5) * 100 ;
  float temperature1F = (temperature1C * 9.0 / 5.0) + 32.0;
  Serial.print("Panel Supply: "); Serial.print(temperature1F); Serial.println(" degrees F");
- delay(1000);
+ delay(500);
  
  //East Panel Return
  tempReading2 = analogRead(tempPin2);
@@ -95,7 +95,7 @@ void loop() {
  float temperature2C = (voltage2 - 0.5) * 100 ;
  float temperature2F = (temperature2C * 9.0 / 5.0) + 32.0;
  Serial.print("East Panel Return: "); Serial.print(temperature2F); Serial.println(" degrees F");
- delay(1000);
+ delay(500);
  
  //West Panel Return
  tempReading3 = analogRead(tempPin3);
@@ -104,7 +104,7 @@ void loop() {
  float temperature3C = (voltage3 - 0.5) * 100 ; 
  float temperature3F = (temperature3C * 9.0 / 5.0) + 32.0;
  Serial.print("West Panel Return: "); Serial.print(temperature3F); Serial.println(" degrees F");
- delay(1000);
+ delay(500);
  
  //H2O Supply
  tempReading4 = analogRead(tempPin4);
@@ -113,7 +113,7 @@ void loop() {
  float temperature4C = (voltage4 - 0.5) * 100 ; 
  float temperature4F = (temperature4C * 9.0 / 5.0) + 32.0;
  Serial.print("H2O Supply: "); Serial.print(temperature4F); Serial.println(" degrees F");
- delay(1000);
+ delay(500);
  
  //H2O Return
  tempReading5 = analogRead(tempPin5);
