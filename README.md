@@ -1,2 +1,2 @@
-# kirbysoft
-House control system for Kirky's house
+# KIRBYSOFT
+Control system for Kirky's house
