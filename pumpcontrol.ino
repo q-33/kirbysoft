@@ -1,15 +1,3 @@
-//////////////////////
-//  KIRBYSOFT v0.7  //
-//////////////////////
-
-/*
-NOTES
-Need to add:
--Flow sensors
--If/then for temp / pump controls
--Temp sensors 6,7,8
-*/
- 
 //Define the reference voltage (use multimeter on 3.3v)
 #define aref_voltage 3.3 //Not yet calibrated
  
@@ -25,10 +13,10 @@ Need to add:
 
 //Temperature thresholds for pumps
 #define thresh1 80 //Threshold for normal to FAU
-#define thresh2 79 //Threshold for high to FAU
-#define thresh3 78 //Threshold for normal to H2O
-#define thresh4 77 //Threshold for normal to slab
-#define thresh5 76 //Threshold for high to slab
+#define thresh2 80 //Threshold for high to FAU
+#define thresh3 80 //Threshold for normal to H2O
+#define thresh4 80 //Threshold for normal to slab
+#define thresh5 80 //Threshold for high to slab
  
 //TMP36 pins
 int tempPin1 = 0; //Panel supply
@@ -68,16 +56,6 @@ void setup()
  
 void loop() {
  
- Serial.println("*************************************");
- Serial.println("*     WELCOME TO KIRBYSOFT v0.7     *");
- Serial.println("*************************************");
- 
- delay(2000);
- 
- Serial.println("Hello, Kirby! Let me check the sensors...");
- 
- delay(3000);
- 
 //TEMPERATURE SENSOR READINGS
  //Panel Supply 
  tempReading1 = analogRead(tempPin1);
@@ -86,7 +64,6 @@ void loop() {
  float temperature1C = (voltage1 - 0.5) * 100 ;
  float temperature1F = (temperature1C * 9.0 / 5.0) + 32.0;
  Serial.print("Panel Supply: "); Serial.print(temperature1F); Serial.println(" degrees F");
- delay(500);
  
  //East Panel Return
  tempReading2 = analogRead(tempPin2);
@@ -95,7 +72,6 @@ void loop() {
  float temperature2C = (voltage2 - 0.5) * 100 ;
  float temperature2F = (temperature2C * 9.0 / 5.0) + 32.0;
  Serial.print("East Panel Return: "); Serial.print(temperature2F); Serial.println(" degrees F");
- delay(500);
  
  //West Panel Return
  tempReading3 = analogRead(tempPin3);
@@ -104,7 +80,6 @@ void loop() {
  float temperature3C = (voltage3 - 0.5) * 100 ; 
  float temperature3F = (temperature3C * 9.0 / 5.0) + 32.0;
  Serial.print("West Panel Return: "); Serial.print(temperature3F); Serial.println(" degrees F");
- delay(500);
  
  //H2O Supply
  tempReading4 = analogRead(tempPin4);
@@ -113,7 +88,6 @@ void loop() {
  float temperature4C = (voltage4 - 0.5) * 100 ; 
  float temperature4F = (temperature4C * 9.0 / 5.0) + 32.0;
  Serial.print("H2O Supply: "); Serial.print(temperature4F); Serial.println(" degrees F");
- delay(500);
  
  //H2O Return
  tempReading5 = analogRead(tempPin5);
@@ -122,7 +96,6 @@ void loop() {
  float temperature5C = (voltage5 - 0.5) * 100 ; 
  float temperature5F = (temperature5C * 9.0 / 5.0) + 32.0;
  Serial.print("H2O Return: "); Serial.print(temperature5F); Serial.println(" degrees F");
- delay(500);
  
   //H2O Main
  tempReading6 = analogRead(tempPin5); //CHANGE TO CORRECT PIN!
@@ -131,7 +104,6 @@ void loop() {
  float temperature6C = (voltage6 - 0.5) * 100 ; 
  float temperature6F = (temperature6C * 9.0 / 5.0) + 32.0;
  Serial.print("H2O Main: "); Serial.print(temperature6F); Serial.println(" degrees F");
- delay(500);
  
   //FAU Supply
  tempReading7 = analogRead(tempPin5); //CHANGE TO CORRENT PIN!
@@ -140,7 +112,6 @@ void loop() {
  float temperature7C = (voltage7 - 0.5) * 100 ; 
  float temperature7F = (temperature7C * 9.0 / 5.0) + 32.0;
  Serial.print("FAU Supply: "); Serial.print(temperature7F); Serial.println(" degrees F");
- delay(500);
  
   //FAU Return
  tempReading8 = analogRead(tempPin5); //CHANGE TO CORRENT PIN!
@@ -149,93 +120,60 @@ void loop() {
  float temperature8C = (voltage8 - 0.5) * 100 ; 
  float temperature8F = (temperature8C * 9.0 / 5.0) + 32.0;
  Serial.print("FAU Return: "); Serial.print(temperature8F); Serial.println(" degrees F");
- delay(500);
- 
- Serial.println("Done.");
- delay(3000);
-
- Serial.println("Now, let me adjust the pumps...");
- delay(3000);
- 
+  
 //RELAY CONTROL
  //PUMP1 - NORMAL TO FAU
  
  if (temperature1F >= thresh1) {
    digitalWrite(RELAY1, HIGH);
-    Serial.println("**PUMP1 TO FAU ON NORMAL**");
+    Serial.println("ON NORMAL pump1 to FAU");
  }
  else {
    digitalWrite(RELAY1, LOW);
-     Serial.println("Pump1 to FAU off normal");
+     Serial.println("OFF NORMAL pump1 to FAU");
  }
- 
- delay(500);
  
  //PUMP1 - HIGH TO FAU
   if (temperature2F >= thresh2) {
    digitalWrite(RELAY2, HIGH);
-     Serial.println("**PUMP1 TO FAU ON HIGH**");
+     Serial.println("ON HIGH pump1 to FAU");
  }
  else {
    digitalWrite(RELAY2, LOW);
-     Serial.println("Pump1 to FAU off high");
+     Serial.println("OFF HIGH pump1 to FAU");
  }
- 
-  delay(500);
- 
+  
  //PUMP2 - NORMAL TO H2O EXCHANGE
  
   if (temperature3F >= thresh3) {
    digitalWrite(RELAY3, HIGH);
-     Serial.println("**PUMP2 TO H2O EXCHANGE ON**");
+     Serial.println("ON H2O exchange pump");
  }
  else {
    digitalWrite(RELAY3, LOW);
-     Serial.println("Pump2 to H2O exchange off");
+     Serial.println("OFF H2O exchange pump");
  }
-
-  delay(500);
  
  //PUMP3 - NORMAL TO SLAB
   if (temperature4F >= thresh4) {
    digitalWrite(RELAY4, HIGH);
-     Serial.println("**PUMP3 TO SLAB ON NORMAL**");
+     Serial.println("ON NORMAL pump3 to slab");
  }
  else {
    digitalWrite(RELAY4, LOW);
-     Serial.println("Pump3 to slab off normal");
+     Serial.println("OFF NORMAL pump3 to slab");
  }
- 
-  delay(500);
- 
+  
  //PUMP3 - HIGH TO SLAB
   if (temperature5F >= thresh5) {
    digitalWrite(RELAY5, HIGH);
-     Serial.println("**PUMP3 TO SLAB ON HIGH**");
+     Serial.println("ON HIGH pump3 to slab");
  }
  else {
    digitalWrite(RELAY5, LOW);
-     Serial.println("Pump3 to slab off high");
+     Serial.println("OFF HIGH pump3 to slab");
  }
- 
-  delay(500);
-  
-  Serial.println("Done.");
-  delay(3000);
- 
+    
 //Kill time between runs
- Serial.println("Give me a moment to catch my breath.");
  delay(5000);
- Serial.println("Restarting in...");
- delay(500);
- Serial.println("5");
- delay(500);
- Serial.println("4");
- delay(500);
- Serial.println("3");
- delay(500);
- Serial.println("2");
- delay(500);
- Serial.println("1");
- delay(500);
 }
